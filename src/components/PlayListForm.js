@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '/Users/kerispencer/Development/react/play-what/src/styles/App.css'
+import PlayListItem from './PlayListItem'
 
 class PlayListForm extends Component {
   constructor(props) {
@@ -11,6 +12,12 @@ class PlayListForm extends Component {
       songArtist: '',
       songTitle: ''
     }
+  }
+
+  handleNameChange(e) {
+    this.setState({
+      userName: e.target.value
+    })
   }
 
   addToList = e => {
@@ -32,6 +39,8 @@ class PlayListForm extends Component {
       }
     })
       .then(response => {
+        console.log(this.state)
+
         console.log(response, 'yay')
       })
       .catch(err => {
@@ -42,18 +51,24 @@ class PlayListForm extends Component {
 
   render() {
     return (
-      <div className="formWrap">
-        <form className="form">
-          <input name="name" placeholder="Name or User Name" />
-          <input name="artist" placeholder="Artist or Band Name" />
-          <input name="songTitle" placeholder="Song Title" />
-          <textarea name="songNotes" />
-          <div className="btn">
-            <input type="submit" value="Submit" />
-          </div>
-        </form>
+      <div>
+        <div className="formWrap">
+          <form onSubmit={this.addToList} className="form">
+            <div>
+              {/* Add onChange={} and value={this.state.userName} back */}
+              <input name="name" placeholder="Name or User Name" />
+            </div>
+            <input name="artist" placeholder="Artist or Band Name" />
+            <input name="songTitle" placeholder="Song Title" />
+            <textarea name="songNotes" />
+            <div className="btn">
+              <input type="submit" value="Submit" />
+            </div>
+          </form>
+        </div>
       </div>
     )
+    // return <PlayListItem songs={this.state.songs} />
   }
 }
 

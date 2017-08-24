@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
+import PlayListItem from '/Users/kerispencer/Development/react/play-what/src/components/PlayListItem.js'
 
 class PlayList extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      userName: '',
-      songNotes: '',
-      songArtist: '',
-      songTitle: ''
+      songs: []
     }
   }
 
@@ -39,6 +37,7 @@ class PlayList extends Component {
       <div>
         <h2>From PlayList</h2>
         {this.state.children}
+        <PlayListItem songs={this.state.songs} />
       </div>
     )
   }
