@@ -1,0 +1,14 @@
+.formWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.playlistTitle {
+  font-size: 55px;
+  background-color: pink;
+}
