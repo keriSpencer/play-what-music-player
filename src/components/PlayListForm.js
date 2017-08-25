@@ -7,6 +7,7 @@ class PlayListForm extends Component {
     super(props)
 
     this.state = {
+      songs: [],
       userName: '',
       songNotes: '',
       songArtist: '',
@@ -14,21 +15,16 @@ class PlayListForm extends Component {
     }
   }
 
-  handleNameChange(e) {
+  _name = e => {
     this.setState({
       userName: e.target.value
     })
   }
 
-  addToList = e => {
+  _addToList = e => {
     e.preventDefault()
-    this.setState({
-      userName: e.target.value,
-      songTitle: e.target.value,
-      songArtist: e.target.value,
-      songNotes: e.target.value
-    })
-    let listItem = JSON.stringify(this.state)
+    const { userName, songTitle, songArtist, songNotes } = this.state
+    let listItem = JSON.stringify({ userName, songTitle, songArtist, songNotes })
 
     fetch('https://tiny-lasagna-server.herokuapp.com/collections/playlisting', {
       method: 'POST',
@@ -38,29 +34,33 @@ class PlayListForm extends Component {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => {
-        console.log(this.state)
-
-        console.log(response, 'yay')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
       })
       .catch(err => {
         console.log(err, 'boo!')
       })
-    this.setState({ userName: '', songNotes: '', songArtist: '', songTitle: '' })
+    this.setState({ userName: '', songArtist: '', songTitle: '', songNotes: '' })
   }
 
   render() {
     return (
       <div>
         <div className="formWrap">
-          <form onSubmit={this.addToList} className="form">
+          <form onSubmit={this._addToList} className="form">
             <div>
-              {/* Add onChange={} and value={this.state.userName} back */}
-              <input name="name" placeholder="Name or User Name" />
+              <input
+                className="formFields"
+                onChange={this._name}
+                name="name"
+                placeholder="Name or Username"
+                value={this.props.userName}
+              />
             </div>
-            <input name="artist" placeholder="Artist or Band Name" />
-            <input name="songTitle" placeholder="Song Title" />
-            <textarea name="songNotes" />
+            <input className="formFields" name="artist" placeholder="Artist or Band Name" />
+            <input className="formFields" name="songTitle" placeholder="Song Title" />
+            <textarea className="formFields" name="songNotes" />
             <div className="btn">
               <input type="submit" value="Submit" />
             </div>
@@ -68,7 +68,7 @@ class PlayListForm extends Component {
         </div>
       </div>
     )
-    // return <PlayListItem songs={this.state.songs} />
+    return <PlayListItem songs={this.state.songs} />
   }
 }
 

@@ -10,5 +10,27 @@
 
 .playlistTitle {
   font-size: 55px;
-  background-color: pink;
+  background-color: rgba(195, 239, 187, 0.43);
+  padding: .5em;
+  border-radius: 0.2em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+input.formFields {
+  padding-left: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+div#root {
+  background-color: #666;
+  padding: 2em;
+  color: white;
+  border-radius: 2%;
+  height: 1200px;
+  margin-top: 2em;
+}
+
+.btn {
+  line-height: 2;
 }

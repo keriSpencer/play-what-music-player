@@ -7,34 +7,51 @@ class PlayListItem extends Component {
   }
 
   render() {
-    // let key = 0
     console.log('hi')
     console.log(this.props.songs)
     console.log('there')
-    // let songs = this.props.songs.map(song => {
+
+    let key = 0
+    let songlist = this.props.songs.map(song => {
+      key++
+      return (
+        <tbody key={key}>
+          <tr>
+            <td>
+              {song.userName}
+            </td>
+            <td>
+              {song.songArtist}
+            </td>
+            <td>
+              {song.songTitle}
+            </td>
+            <td>
+              {song.songNotes}
+            </td>
+          </tr>
+        </tbody>
+      )
+    })
     return (
       <div>
-        {/* <h2>Hello from PlayListItems</h2> */}
-        <div>
-          <p>
-            {/* {song.userName} */}
-          </p>
+        <div className="songsStyle">
+          <h4>Songs</h4>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Artist</th>
+                <th>Title</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            {songlist}
+          </table>
         </div>
       </div>
     )
   }
 }
-
-// let key = 0
-// let song = this.props.songs.map(song => {
-//   key++
-
-// <h2>Hello from PlayListItems</h2>
-// <div>
-//   <p>
-//     {song.userName}
-//   </p>
-// </div>
-// })
 
 export default PlayListItem

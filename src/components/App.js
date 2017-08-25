@@ -22,8 +22,8 @@ class App extends Component {
       <div className="App">
         <p className="App-intro" />
         <NavBar />
-        <PlayList />
         <PlayListForm />
+        <PlayList />
       </div>
     )
   }

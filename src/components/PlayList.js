@@ -6,7 +6,11 @@ class PlayList extends Component {
     super(props)
 
     this.state = {
-      songs: []
+      songs: [],
+      userName: '',
+      songNotes: '',
+      songArtist: '',
+      songTitle: ''
     }
   }
 
@@ -35,8 +39,6 @@ class PlayList extends Component {
   render() {
     return (
       <div>
-        <h2>From PlayList</h2>
-        {this.state.children}
         <PlayListItem songs={this.state.songs} />
       </div>
     )
