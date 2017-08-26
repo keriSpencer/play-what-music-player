@@ -21,6 +21,24 @@ class PlayListForm extends Component {
     })
   }
 
+  _artist = e => {
+    this.setState({
+      songArtist: e.target.value
+    })
+  }
+
+  _title = e => {
+    this.setState({
+      songTitle: e.target.value
+    })
+  }
+
+  _notes = e => {
+    this.setState({
+      songNotes: e.target.value
+    })
+  }
+
   _addToList = e => {
     e.preventDefault()
     const { userName, songTitle, songArtist, songNotes } = this.state
@@ -58,9 +76,21 @@ class PlayListForm extends Component {
                 value={this.props.userName}
               />
             </div>
-            <input className="formFields" name="artist" placeholder="Artist or Band Name" />
-            <input className="formFields" name="songTitle" placeholder="Song Title" />
-            <textarea className="formFields" name="songNotes" />
+            <input
+              className="formFields"
+              onChange={this._artist}
+              name="artist"
+              placeholder="Artist or Band Name"
+              value={this.props.songArtist}
+            />
+            <input
+              className="formFields"
+              onChange={this._title}
+              name="songTitle"
+              placeholder="Song Title"
+              value={this.props.songTitle}
+            />
+            <textarea className="formFields" onChange={this._notes} name="songNotes" value={this.props.songNotes} />
             <div className="btn">
               <input type="submit" value="Submit" />
             </div>
